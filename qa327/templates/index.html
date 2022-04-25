@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Profile{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<h4 id='message'>{{message}}</h4>
+
+<h2 id="welcome-header">Hi {{ user.name }} !</h2>
+
+<p id="user-email" hidden>{{ user.email }}</p>
+<h2 id="balance">User Balance: ${{ user.balance }}</h2>
+
+<h2 >Here are all available tickets</h2>
+
+<div id="tickets">
+{% for ticket in tickets %}
+    <div>
+        <h4>{{ ticket.name }} {{ ticket.quantity }} {{ ticket.price }} {{ ticket.owner }} {{ ticket.date }}</h4>
+    </div>
+{% endfor %}
+</div>
+
+<h4 id='sell'>Sell Tickets</h4>
+<form method="post">
+    <div class="form-group">
+      <label for="sell-name">Ticket Name</label>
+      <input class="form-control" name="sell-name" id="sell-name">
+      <label for="sell-quantity">Quantity</label>
+      <input class="form-control" name="sell-quantity" id="sell-quantity" placeholder="1-100">
+      <label for="sell-price">Price</label>
+      <input class="form-control" name="sell-price" id="sell-price" placeholder="$10-$100">
+      <label for="sell-date">Expiry Date</label>
+      <input class="form-control" name="sell-date" id="sell-date" placeholder="YYYYMMDD">
+      <input class="sell" type="submit" name="submit" value="Sell">
+    </div>
+  </form>
+
+<h4 id='buy'>Buy Tickets</h4>
+<form method="post">
+    <div class="form-group">
+      <label for="buy-name">Ticket Name</label>
+      <input class="form-control" name="buy-name" id="buy-name">
+      <label for="buy-quantity">Quantity</label>
+      <input class="form-control" name="buy-quantity" id="buy-quantity" placeholder="1-100">
+      <input class="buy" type="submit" name="submit" value="Buy">
+    </div>
+  </form>
+
+<h4 id='update'>Update Tickets</h4>
+<form method="post">
+    <div class="form-group">
+      <label for="update-name">Ticket Name</label>
+      <input class="form-control" name="update-name" id="update-name">
+      <label for="update-quantity">Quantity</label>
+      <input class="form-control" name="update-quantity" id="update-quantity" placeholder="1-100">
+      <label for="update-price">Price</label>
+      <input class="form-control" name="update-price" id="update-price" placeholder="$10-$100">
+      <label for="update-date">Expiry Date</label>
+      <input class="form-control" name="update-date" id="update-date" placeholder="YYYYMMDD">
+      <input class="update" type="submit" name="submit" value="Update">
+    </div>
+  </form>
+
+<a href='/logout'>logout</a>
+{% endblock %}
